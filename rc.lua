@@ -108,7 +108,8 @@ local themes = {
 local chosen_theme = themes[11]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "xfce4-terminal"
+--local terminal     = "xfce4-terminal"
+local terminal     = "alacritty"
 local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "nvim"
@@ -747,7 +748,7 @@ awful.rules.rules = {
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
-	  "openmw",
+          "openmw",
           "xtightvncviewer"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -762,32 +763,46 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
+    -- Spawn floating clients centered
+    -- { rule_any = {
+    --    floating = true
+    --},
+    --    properties = {
+    --        placement = awful.placement.centered + awful.placement.no_overlap+awful.placement.no_offscreen
+    --    }
+    --},
+
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = true, placement = awful.placement.centered + awful.placement.no_overlap+awful.placement.no_offscreen }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
+    -- tag rules
      { rule = { class = "Firefox" },
-       properties = { screen = 1, tag = "www", titlebars_enabled = false } },
+       properties = { tag = "➊ www", titlebars_enabled = false } },
      { rule = { class = "Thunderbird" },
-       properties = { screen = 2, tag = "mail", titlebars_enabled = false } },
+       properties = { screen = 2, tag = "➋ office", titlebars_enabled = false } },
      { rule = { name = "PulseEffects" },
-       properties = { screen = 1, tag = "audio", titlebars_enabled = false } },
+       properties = { screen = 1, tag = "➌ audio", titlebars_enabled = false } },
      { rule = { name = "LibreOffice" },
-       properties = { screen = 1, tag = "office", titlebars_enabled = false } },
+       properties = { screen = 1, tag = "➋ office", titlebars_enabled = false } },
+     { rule = { name = "Spotify" },
+       properties = { tag = "➌ audio" } },
      { rule = { name = "Telegram" },
        properties = { titlebars_enabled = true, floating = true, ontop = true } },
      { rule = { name = "Volume Control" },
-       properties = { screen = 1, tag = "audio" } },
+       properties = { tag = "➌ audio" } },
      { rule = { name = "Terminal" },
 	   properties = { titlebars_enabled = false } },
+     { rule = { name = "About Mozilla Firefox" },
+       properties = { titlebars_enabled = false, floating = true } },
      { rule = { name = "Signal" },
-	   properties = { titlebars_enabled = false, tag = "stuff 3" } },
+	   properties = { titlebars_enabled = false, tag = "➏ stuff 3" } },
      { rule = { name = "Caprine" },
-       properties = { titlebars_enabled = false, tag = "stuff 3" } },
+       properties = { titlebars_enabled = false, tag = "➏ stuff 3" } },
      { rule = { class = "Alacritty" },
-	   properties = { titlebars_enabled = false, floating = true, ontop = true, placement = awful.placement.centered } },
+	   --properties = { titlebars_enabled = false, floating = true, ontop = true, placement = awful.placement.centered } },
+       properties = { titlebars_enabled = false } },
 }
 
 -- }}}

@@ -23,5 +23,7 @@ run thinkfan -n
 run pulseeffects --gapplication-service
 #run pulseeffects -r
 #run pulseeffects -l relu1
+run xset dpms 3600 3600 3600 &
+run xset s 3600 3600 &
 pulseeffects
 
